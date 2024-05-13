@@ -16,7 +16,10 @@ class MyCmd(cmd.Cmd):
     
     def do_EOF(self, line):
         """Exit the program"""
+        print("")
         return True
-
+    def default(self, line):
+        print(f"Undefined command: {line}")
+    
 if __name__ == '__main__':
     MyCmd().cmdloop()
