@@ -1,0 +1,28 @@
+here are some common format codes that you can use with the strftime()
+method to format datetime objects into strings:
+
+%Y: Year with century as a decimal number (e.g., 2024).
+%y: Year without century as a zero-padded decimal number (00 to 99).
+%m: Month as a zero-padded decimal number (01 to 12).
+%B: Full month name (e.g., January).
+%b or %h: Abbreviated month name (e.g., Jan).
+%d: Day of the month as a zero-padded decimal number (01 to 31).
+%A: Full weekday name (e.g., Monday).
+%a: Abbreviated weekday name (e.g., Mon).
+%H: Hour (24-hour clock) as a zero-padded decimal number (00 to 23).
+%I: Hour (12-hour clock) as a zero-padded decimal number (01 to 12).
+%p: AM or PM designation.
+%M: Minute as a zero-padded decimal number (00 to 59).
+%S: Second as a zero-padded decimal number (00 to 59).
+%f: Microsecond as a zero-padded decimal number (000000 to 999999).
+%z: UTC offset in the form ±HHMM[SS[.ffffff]] (empty string if the object is naive).
+%Z: Time zone name (empty string if the object is naive).
+%j: Day of the year as a zero-padded decimal number (001 to 366).
+%U: Week number of the year (Sunday as the first day of the week) as
+    a zero-padded decimal number (00 to 53). All days in a new year preceding the first Sunday are considered to be in week 0.
+%W: Week number of the year (Monday as the first day of the week) as 
+    a zero-padded decimal number (00 to 53). All days in a new year preceding the first Monday are considered to be in week 0.
+%c: Locale's appropriate date and time representation.
+%x: Locale's appropriate date representation.
+%X: Locale's appropriate time representation.
+%%: A literal '%' character.

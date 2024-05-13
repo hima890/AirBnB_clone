@@ -1,0 +1,18 @@
+UUID.hex
+The UUID as a 32-character hexadecimal string.
+
+UUID.int
+The UUID as a 128-bit integer.
+
+UUID.urn
+The UUID as a URN as specified in RFC 4122.
+
+UUID.variant
+The UUID variant, which determines the internal layout of the UUID. This will be one of the constants RESERVED_NCS, RFC_4122, RESERVED_MICROSOFT, or RESERVED_FUTURE.
+
+UUID.version¶
+The UUID version number (1 through 5, meaningful only when the variant is RFC_4122).
+
+UUID.is_safe
+An enumeration of SafeUUID which indicates whether the platform generated the UUID in a multiprocessing-safe way.
+
