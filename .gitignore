@@ -1,3 +1,6 @@
+# Py cash
+.*cache/
+
 # Byte-compiled / optimized files
 __pycache__/
 *.pyc
