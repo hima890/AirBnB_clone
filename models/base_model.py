@@ -8,6 +8,7 @@ It includes attributes and methods common to all models.
 import datetime
 import uuid
 
+
 class BaseModel:
     """
     This class serves as a base model for other classes.
@@ -21,8 +22,10 @@ class BaseModel:
 
         Attributes:
             id (str): A unique identifier generated using UUID.
-            created_at (str): A string representation of the creation timestamp.
-            updated_at (str): A string representation of the last update timestamp.
+            created_at (str): A string representation of the
+            creation timestamp.
+            updated_at (str): A string representation of the
+            last update timestamp.
         """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now().isoformat()
@@ -52,4 +55,6 @@ class BaseModel:
         Returns:
             str: A string containing the class name, ID, and attributes.
         """
-        return "[{}] /({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] /({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__
+            )
