@@ -1,0 +1,12 @@
+Here are some examples of well-named branches following these practices:
+
+feature/user-authentication
+bugfix/issue-123
+hotfix/production-crash
+refactor/database-schema
+release/version-1.0
+experiment/new-ui-design
+
+By following these practices, you can create branch names
+that are meaningful, easy to understand, and help streamline
+collaboration within your team.
