@@ -10,3 +10,6 @@ experiment/new-ui-design
 By following these practices, you can create branch names
 that are meaningful, easy to understand, and help streamline
 collaboration within your team.
+
+To delete a branch locally in Git after it has been merged and closed on GitHub, you can use the following command:
+git branch -d <branch_name>
