@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import cmd
+from models import storage
 from utility.dynamically_create_cls import dynamicallyCreateCls
 
 """"
@@ -43,6 +44,31 @@ class HBNBCommand(cmd.Cmd):
             return None
 
         dynamicallyCreateCls(className)
+
+    def do_show(self, arg):
+        args = arg.split()
+
+        if not args:
+            print("** class name missing **")
+            return None
+
+        className = args[0]
+        if className not in HBNBCommand.__supported_classes:
+            print("** class doesn't exist **")
+            return None
+
+        if len(args) != 2:
+            print("** instance id missing **")
+            return None
+
+        classId = args[1]
+        key = "{}.{}".format(className, classId)
+        if key not in storage.all().keys():
+            print("** no instance found **")
+            return None
+
+        instance = storage.all()[key]
+        print("{}".format(instance))
 
     def do_help(self, arg):
 
