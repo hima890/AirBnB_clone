@@ -20,14 +20,15 @@ class FileStorage:
 
     def all(self):
         """
-            Returns the dictionary __objects
+        returns the dictionary __objects
         """
 
         return self.__objects
 
     def new(self, obj):
+
         """
-            Sets in __objects the obj with key <obj class name>.id
+        sets in __objects the obj with key <obj class name>.id
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
