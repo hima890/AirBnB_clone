@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import cmd
-from models.base_model import BaseModel
+from utility.dynamically_create_cls import dynamicallyCreateCls
 
 """"
 console.py
@@ -14,6 +14,7 @@ console.py
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
+    # All the supported classes that globals function used
     __supported_classes = {
         "BaseModel",
         "User",
@@ -30,29 +31,18 @@ class HBNBCommand(cmd.Cmd):
 
         if not args:
             print("** class name missing **")
-            return
+            return None
 
         if len(args) != 1:
             print("** expicted one arguminte **")
-            return
+            return None
 
-        class_name = args[0]
-        if class_name not in HBNBCommand.__supported_classes:
+        className = args[0]
+        if className not in HBNBCommand.__supported_classes:
             print("** class doesn't exist **")
-            return
+            return None
 
-        try:
-            # Dynamically get the class using globals() and getattr()
-            cls = globals()[class_name]
-            # Create a new class instance
-            new_instance = cls()
-            # Save the instance
-            new_instance.save()
-            print(new_instance.id)
-        except KeyError:
-            print("** class doesn't exist **")
-        except Exception as e:
-            print(e)
+        dynamicallyCreateCls(className)
 
     def do_help(self, arg):
 
