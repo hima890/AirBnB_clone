@@ -1,7 +1,8 @@
 # Py cash
 .*cache/
 
-doc.py
+# Ignore the resources folder
+resources/
 
 # Byte-compiled / optimized files
 __pycache__/
