@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Dynamically Create classes
+"""
 from models.base_model import BaseModel
 
 
