@@ -57,3 +57,10 @@ class FileStorage:
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass  # If the file doesn't exist, do nothing
+
+    def delete(self, key):
+        """Deletes an object from __objects using its key and updates the JSON file."""
+        objects = self.all()
+        if key in objects:
+            del objects[key]
+            self.save()

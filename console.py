@@ -70,6 +70,30 @@ class HBNBCommand(cmd.Cmd):
         instance = storage.all()[key]
         print("{}".format(instance))
 
+    def do_destroy(self, arg):
+        args = arg.split()
+
+        if not args:
+            print("** class name missing **")
+            return None
+
+        className = args[0]
+        if className not in HBNBCommand.__supported_classes:
+            print("** class doesn't exist **")
+            return None
+
+        if len(args) != 2:
+            print("** instance id missing **")
+            return None
+
+        classId = args[1]
+        key = "{}.{}".format(className, classId)
+        if key not in storage.all().keys():
+            print("** no instance found **")
+            return None
+
+        storage.delete(key)
+
     def do_help(self, arg):
 
         """To get help on a command, type help <topic>.
