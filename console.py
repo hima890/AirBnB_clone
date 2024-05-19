@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+This module contains the entry point of the command interpreter.
+"""
+
+
 import cmd
 from models import storage
 from utility.dynamically_create_cls import dynamicallyCreateCls
@@ -27,6 +32,11 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def do_create(self, arg):
+        """
+        Creates a new instance of BaseModel, saves it (to the JSON file)
+        and prints the id.
+        Usage: create <class name>
+        """
         args = arg.split()
 
         if not args:
@@ -45,6 +55,11 @@ class HBNBCommand(cmd.Cmd):
         dynamicallyCreateCls(className)
 
     def do_show(self, arg):
+        """
+        Prints the string representation of an instance based on the
+        class name and id.
+        Usage: show <class name> <id>
+        """
         args = arg.split()
 
         if not args:
@@ -70,6 +85,10 @@ class HBNBCommand(cmd.Cmd):
         print("{}".format(instance))
 
     def do_destroy(self, arg):
+        """
+        Deletes an instance based on the class name and id.
+        Usage: destroy <class name> <id>
+        """
         args = arg.split()
 
         if not args:

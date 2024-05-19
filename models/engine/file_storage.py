@@ -1,13 +1,11 @@
 #!/usr/bin/python3
+"""
+This module contains the FileStorage class for managing
+storage of models in a JSON file.
+"""
 from models.base_model import BaseModel
 from models.user import User
 import json
-
-
-"""
-Module: for FileStorage class
-define a class named FileStorage
-"""
 
 
 class FileStorage:

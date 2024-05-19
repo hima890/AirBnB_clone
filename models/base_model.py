@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+This module contains the BaseModel class.
+"""
 import datetime
 import uuid
 import models
