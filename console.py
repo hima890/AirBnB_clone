@@ -48,6 +48,7 @@ class HBNBCommand(cmd.Cmd):
             return None
 
         className = args[0]
+        print(type(className))
         if className not in HBNBCommand.__supported_classes:
             print("** class doesn't exist **")
             return None
