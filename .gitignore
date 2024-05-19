@@ -1,5 +1,6 @@
 # Py cash
 .*cache/
+doc.py
 
 # Byte-compiled / optimized files
 __pycache__/
