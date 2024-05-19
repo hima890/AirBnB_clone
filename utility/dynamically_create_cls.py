@@ -13,6 +13,32 @@ from models.review import Review
 
 
 def dynamicallyCreateCls(className):
+    """
+    Dynamically creates an instance of a class based on its name.
+
+    Args:
+        className (str): The name of the class to instantiate.
+
+    Returns:
+        None: If the class doesn't exist or an exception occurs
+        during instantiation.
+
+    Raises:
+        KeyError: If the specified class name doesn't exist in
+        the global scope.
+        Exception: Any other unexpected exceptions that occur
+        during instantiation.
+
+    Prints:
+        str: The ID of the newly created instance, if successful.
+
+    Example:
+        If className = "MyClass" and MyClass is a defined
+        class with a save() method,
+        this function will instantiate MyClass, save the
+        instance, and print its ID.
+
+    """
     try:
         # Dynamically get the class using globals() and getattr()
         cls = globals()[className]
