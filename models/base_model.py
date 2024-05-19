@@ -82,6 +82,6 @@ class BaseModel:
             str: A string containing the class name,
             ID, and attributes.
         """
-        return "[{}] /({}) {}".format(
+        return "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__
             )
