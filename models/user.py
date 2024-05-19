@@ -2,6 +2,7 @@
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """
     user class with basic info email/password/first-last(name)
@@ -11,4 +12,3 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-    

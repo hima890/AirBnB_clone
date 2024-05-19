@@ -3,6 +3,8 @@
 class named place that inharits from BaseModel
 """
 from models.base_model import BaseModel
+
+
 class Place(BaseModel):
     """Inherits from BaseModel class
 
