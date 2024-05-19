@@ -54,8 +54,14 @@ class FileStorage:
                 data = json.load(file)
                 for key, obj_dict in data.items():
                     class_name, obj_id = key.split('.')
-                    print("BaseModel" in globals())
                     obj = globals()[class_name].from_dict(obj_dict)
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass  # If the file doesn't exist, do nothing
+
+    def delete(self, key):
+        """Deletes an object from __objects using its key and updates the JSON file."""
+        objects = self.all()
+        if key in objects:
+            del objects[key]
+            self.save()
