@@ -5,6 +5,7 @@ This module contains the entry point of the command interpreter.
 
 
 import cmd
+import json
 from models import storage
 from utility.dynamically_create_cls import dynamicallyCreateCls
 from models.base_model import BaseModel
@@ -234,7 +235,7 @@ class HBNBCommand(cmd.Cmd):
 
         storage.delete(key)
 
-    def do_update_cmd(self, class_name, instance_id, attribute_name, attribute_value):
+    def do_update_cmd(self, class_name, instance_id, update_data):
         """Updates an instance based on the class name and id"""
         key = "{}.{}".format(class_name, instance_id)
         objects = storage.all()
@@ -242,9 +243,28 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-        instance = objects[key]
-        setattr(instance, attribute_name, attribute_value)
-        instance.save()
+        # Check if update_data is a dictionary representation
+        if update_data.startswith("{") and update_data.endswith("}"):
+            try:
+                update_dict = json.loads(update_data.replace("'", "\""))
+                if isinstance(update_dict, dict):
+                    for attribute_name, attribute_value in update_dict.items():
+                        setattr(objects[key], attribute_name, attribute_value)
+                    objects[key].save()
+                else:
+                    print("** value is not a dictionary **")
+            except json.JSONDecodeError:
+                print("** value is not a valid dictionary **")
+        else:
+            update_parts = update_data.split(", ")
+            if len(update_parts) == 2:
+                attribute_name = update_parts[0].strip('"')
+                attribute_value = update_parts[1].strip('"')
+                setattr(objects[key], attribute_name, attribute_value)
+                objects[key].save()
+            else:
+                print("** Incorrect number of parameters **")
+
 
     def default(self, line):
         """Default behavior when command prefix is a class name"""
@@ -262,12 +282,16 @@ class HBNBCommand(cmd.Cmd):
                     instance_id = command[9:-1].strip('"')
                     self.do_destroy2(class_name, instance_id)
                 elif command.startswith("update(") and command.endswith(")"):
-                    params = command[7:-1].split(', ')
+                    params = command[7:-1].split(", ", 2)
                     if len(params) == 3:
                         instance_id = params[0].strip('"')
                         attribute_name = params[1].strip('"')
                         attribute_value = params[2].strip('"')
-                        self.do_update_cmd(class_name, instance_id, attribute_name, attribute_value)
+                        self.do_update_cmd(class_name, instance_id, f"{attribute_name} {attribute_value}")
+                    elif len(params) == 2:
+                        instance_id = params[0].strip('"')
+                        update_data = params[1]
+                        self.do_update_cmd(class_name, instance_id, update_data)
                 else:
                     print(f"** Unknown command: {command} **")
             else:
