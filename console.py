@@ -265,7 +265,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** Incorrect number of parameters **")
 
-
     def default(self, line):
         """Default behavior when command prefix is a class name"""
         parts = line.split('.')
@@ -287,11 +286,14 @@ class HBNBCommand(cmd.Cmd):
                         instance_id = params[0].strip('"')
                         attribute_name = params[1].strip('"')
                         attribute_value = params[2].strip('"')
-                        self.do_update_cmd(class_name, instance_id, f"{attribute_name} {attribute_value}")
+                        self.do_update_cmd(
+                            class_name, instance_id,
+                            f"{attribute_name} {attribute_value}")
                     elif len(params) == 2:
                         instance_id = params[0].strip('"')
                         update_data = params[1]
-                        self.do_update_cmd(class_name, instance_id, update_data)
+                        self.do_update_cmd(
+                            class_name, instance_id, update_data)
                 else:
                     print(f"** Unknown command: {command} **")
             else:
@@ -320,6 +322,7 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program.
         """
         return True
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

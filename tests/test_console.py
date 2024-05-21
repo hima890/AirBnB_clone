@@ -20,8 +20,8 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 
+
 class TestHBNBCommand(unittest.TestCase):
-    
     def setUp(self):
         """Set up the test environment"""
         storage._FileStorage__objects = {}
@@ -73,7 +73,6 @@ class TestHBNBCommand(unittest.TestCase):
         new_user.save()
         HBNBCommand().onecmd(f'update User {new_user.id} first_name "John"')
         self.assertEqual(new_user.first_name, "John")
-
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_show_missing_class(self, mock_stdout):
@@ -146,6 +145,7 @@ class TestHBNBCommand(unittest.TestCase):
         """Test update command with invalid id"""
         HBNBCommand().onecmd("update User invalid_id")
         self.assertIn("** no instance found **", mock_stdout.getvalue())
+
 
 if __name__ == '__main__':
     unittest.main()
