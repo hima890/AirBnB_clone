@@ -62,7 +62,7 @@ class FileStorage:
                     obj = globals()[class_name].from_dict(obj_dict)
                     self.__objects[key] = obj
         except FileNotFoundError:
-            return None
+            pass
 
     def delete(self, key):
         """Deletes an object from __objects using its key and updates the
