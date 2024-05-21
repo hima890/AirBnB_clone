@@ -78,7 +78,7 @@ if result is None or result == "":
     print("FAIL: No ID retrieved")
     
 model_id = result
-
+print(model_id)
 
 def model_exists(my_console, model_class, model_id):
     is_found = False    
