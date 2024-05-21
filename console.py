@@ -218,9 +218,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_show2(self, className, classI2d):
+    def do_show2(self, className, classId):
         """Retrieve an instance based on its ID"""
-        key = className + '.' + classI2d
+        key = className + '.' + classId
         if key in storage.all(eval(className)):
             print(storage.all(eval(className))[key])
         else:
@@ -247,7 +247,7 @@ class HBNBCommand(cmd.Cmd):
                     instance_id = command[5:-1].strip('"')
                     self.do_show2(class_name, instance_id)
                 elif command.startswith("destroy(") and command.endswith(")"):
-                    instance_id = command[8:-1].strip('"')
+                    instance_id = command[9:-1].strip('"')
                     self.do_destroy2(class_name, instance_id)
                 else:
                     print(f"** Unknown command: {command} **")
