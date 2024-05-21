@@ -13,4 +13,3 @@ class FileStorage(FileStorage):
         """DOC
         """
         pass
-

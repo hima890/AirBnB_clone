@@ -198,7 +198,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             class_name = line
-            objects = [str(obj) for obj in storage.all(eval(class_name)).values()]
+            objects = [str(obj) for obj in storage.all(
+                eval(class_name)).values()]
         else:
             objects = [str(obj) for obj in storage.all().values()]
         print(objects)
@@ -217,6 +218,14 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_show(self, className, classId):
+        """Retrieve an instance based on its ID"""
+        key = className + '.' + classId
+        if key in storage.all(eval(className)):
+            print(storage.all(eval(className))[key])
+        else:
+            print("** no instance found **")
+
     def default(self, line):
         """Default behavior when command prefix is a class name"""
         parts = line.split('.')
@@ -226,6 +235,11 @@ class HBNBCommand(cmd.Cmd):
             if class_name in self.__supported_classes:
                 if command == "count()":
                     self.do_count(class_name)
+                if command.startswith("show(") and command.endswith(")"):
+                    instance_id = command[5:-1].strip('"')
+                    print(class_name)
+                    print(instance_id)
+                    self.do_show(class_name, instance_id)
                 else:
                     print(f"** Unknown command: {command} **")
             else:
