@@ -54,12 +54,15 @@ class FileStorage:
         Deserializes the JSON file to __objects if the file exists.
         If the file doesn't exist, do nothing.
         """
-        with open(self.__file_path, 'r') as file:
-            data = json.load(file)
-            for key, obj_dict in data.items():
-                class_name, obj_id = key.split('.')
-                obj = globals()[class_name].from_dict(obj_dict)
-                self.__objects[key] = obj
+        try:
+            with open(self.__file_path, 'r') as file:
+                data = json.load(file)
+                for key, obj_dict in data.items():
+                    class_name, obj_id = key.split('.')
+                    obj = globals()[class_name].from_dict(obj_dict)
+                    self.__objects[key] = obj
+        except FileNotFoundError:
+            pass
 
     def delete(self, key):
         """Deletes an object from __objects using its key and updates the
