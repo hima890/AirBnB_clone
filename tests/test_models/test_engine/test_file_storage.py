@@ -10,6 +10,7 @@ import models
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
+import models.engine
 from models.engine.file_storage import FileStorage
 from models.user import User
 from models.state import State
@@ -162,6 +163,12 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("City." + cy.id, objs)
         self.assertIn("Amenity." + am.id, objs)
         self.assertIn("Review." + rv.id, objs)
+
+    def test_reload_no_file(self):
+        storage = FileStorage()
+        storage._FileStorage__file_path = "no_file.json"  # Use a non-existent file
+        # Check that __objects is an empty dictionary
+        self.assertIsNone(storage.reload())
 
     def test_reload_with_arg(self):
         with self.assertRaises(TypeError):
