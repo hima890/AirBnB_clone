@@ -243,10 +243,10 @@ class HBNBCommand(cmd.Cmd):
             if class_name in self.__supported_classes:
                 if command == "count()":
                     self.do_count(class_name)
-                if command.startswith("show(") and command.endswith(")"):
+                elif command.startswith("show(") and command.endswith(")"):
                     instance_id = command[5:-1].strip('"')
                     self.do_show(class_name, instance_id)
-                if command.startswith("destroy(") and command.endswith(")"):
+                elif command.startswith("destroy(") and command.endswith(")"):
                     instance_id = command[9:-1].strip('"')
                     self.do_destroy2(class_name, instance_id)
                 else:
