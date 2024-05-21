@@ -226,6 +226,14 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    def do_destroy2(self, className, classId):
+        key = "{}.{}".format(className, classId)
+        if key not in storage.all().keys():
+            print("** no instance found **")
+            return None
+
+        storage.delete(key)
+
     def default(self, line):
         """Default behavior when command prefix is a class name"""
         parts = line.split('.')
@@ -237,9 +245,10 @@ class HBNBCommand(cmd.Cmd):
                     self.do_count(class_name)
                 if command.startswith("show(") and command.endswith(")"):
                     instance_id = command[5:-1].strip('"')
-                    print(class_name)
-                    print(instance_id)
                     self.do_show(class_name, instance_id)
+                if command.startswith("destroy(") and command.endswith(")"):
+                    instance_id = command[9:-1].strip('"')
+                    self.do_destroy2(class_name, instance_id)
                 else:
                     print(f"** Unknown command: {command} **")
             else:
