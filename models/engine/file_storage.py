@@ -24,11 +24,11 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
-        """
-        returns the dictionary __objects
-        """
-
+    def all(self, cls=None):
+        """Returns a dictionary of models currently in storage.
+        If cls is provided, returns only objects of that type."""
+        if cls:
+            return {k: v for k, v in self.__objects.items() if isinstance(v, cls)}
         return self.__objects
 
     def new(self, obj):

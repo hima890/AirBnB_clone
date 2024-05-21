@@ -7,7 +7,13 @@ This module contains the entry point of the command interpreter.
 import cmd
 from models import storage
 from utility.dynamically_create_cls import dynamicallyCreateCls
-
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 """"
 console.py
     This class represents the command interpreter, and the control center
@@ -48,7 +54,6 @@ class HBNBCommand(cmd.Cmd):
             return None
 
         className = args[0]
-        print(type(className))
         if className not in HBNBCommand.__supported_classes:
             print("** class doesn't exist **")
             return None
@@ -182,6 +187,28 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(instance, attr_name, attr_value)
         instance.save()
+
+    def do_all(self, line):
+        """
+        Prints all string representations of all instances of a class.
+        Usage: <class name>.all() or all <class name>
+        """
+        if line:
+            if line not in self.__supported_classes:
+                print("** class doesn't exist **")
+                return
+            class_name = line
+            objects = [str(obj) for obj in storage.all(eval(class_name)).values()]
+        else:
+            objects = [str(obj) for obj in storage.all().values()]
+        print(objects)
+
+    def onecmd(self, line):
+        """Override the default behavior to handle <class name>.all()"""
+        if line.endswith('.all()'):
+            class_name = line.split('.')[0]
+            return self.do_all(class_name)
+        return super().onecmd(line)
 
     def do_help(self, arg):
 
