@@ -234,6 +234,18 @@ class HBNBCommand(cmd.Cmd):
 
         storage.delete(key)
 
+    def do_update_cmd(self, class_name, instance_id, attribute_name, attribute_value):
+        """Updates an instance based on the class name and id"""
+        key = "{}.{}".format(class_name, instance_id)
+        objects = storage.all()
+        if key not in objects:
+            print("** no instance found **")
+            return
+
+        instance = objects[key]
+        setattr(instance, attribute_name, attribute_value)
+        instance.save()
+
     def default(self, line):
         """Default behavior when command prefix is a class name"""
         parts = line.split('.')
@@ -249,6 +261,13 @@ class HBNBCommand(cmd.Cmd):
                 elif command.startswith("destroy(") and command.endswith(")"):
                     instance_id = command[9:-1].strip('"')
                     self.do_destroy2(class_name, instance_id)
+                elif command.startswith("update(") and command.endswith(")"):
+                    params = command[7:-1].split(', ')
+                    if len(params) == 3:
+                        instance_id = params[0].strip('"')
+                        attribute_name = params[1].strip('"')
+                        attribute_value = params[2].strip('"')
+                        self.do_update_cmd(class_name, instance_id, attribute_name, attribute_value)
                 else:
                     print(f"** Unknown command: {command} **")
             else:
