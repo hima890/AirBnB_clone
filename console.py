@@ -210,6 +210,29 @@ class HBNBCommand(cmd.Cmd):
             return self.do_all(class_name)
         return super().onecmd(line)
 
+    def do_count(self, class_name):
+        if class_name in self.__supported_classes:
+            count = len(storage.all(eval(class_name)))
+            print(count)
+        else:
+            print("** class doesn't exist **")
+
+    def default(self, line):
+        """Default behavior when command prefix is a class name"""
+        parts = line.split('.')
+        if len(parts) == 2:
+            class_name = parts[0]
+            command = parts[1]
+            if class_name in self.__supported_classes:
+                if command == "count()":
+                    self.do_count(class_name)
+                else:
+                    print(f"** Unknown command: {command} **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            super().default(line)
+
     def do_help(self, arg):
 
         """To get help on a command, type help <topic>.
