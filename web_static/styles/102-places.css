@@ -253,55 +253,29 @@ div:hover > .popover {
     color: #000; /* Ensure the text color is black for better readability */
 }
 
-#rev {
+#rev, #rev1, #rev2 {
     font-size: 16px;
     border-bottom: 1px solid #DDDDDD;
     text-align: left;
     padding-bottom: 10px;
 }
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .filters {
-        flex-direction: column;
-        height: auto;
-        align-items: flex-start;
-    }
-
-    .filters button {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .locations, .amenities {
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    .places {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .places article {
-        width: 100%;
-        max-width: 100%;
-        margin: 10px 0;
-    }
-
-    .price_by_night {
-        top: 10px;
-        right: 10px;
-    }
-}
 
 @media screen and (max-width: 480px) {
     .filters {
-        padding: 10px;
+        height: 90px;
     }
 
     .filters button {
         font-size: 16px;
         height: 40px;
+    }
+
+    .popover{
+        padding: 0;
+    }
+
+    .popover ul{
+        padding-left: 0px;
     }
 
     .places article h2 {
@@ -312,6 +286,8 @@ div:hover > .popover {
         min-width: 50px;
         height: 50px;
         font-size: 24px;
+        top: 12px;
+        right: 12px;
     }
 
     .information {
@@ -322,5 +298,75 @@ div:hover > .popover {
 
     .information > div {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 320px){
+    .price_by_night{
+    left: 178px;
+    bottom: 1167.34;
+    top: 6px;
+    }
+
+    .filters {
+        padding: 5px;
+    }
+
+    .filters button {
+        width: 100%;
+        margin-top: 10px;
+        height: 36px;
+        font-size: 14px;
+        padding: 0px;
+        top: 120%;
+        right: 0px;
+    }
+
+    .locations, .amenities {
+        width: 50%;
+        padding: 5px 0;
+    }
+
+    .head3, .head4 {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+    .popover {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .popover ul {
+        padding-left: 10px;
+    }
+
+    .popover li {
+        padding-left: 15px;
+    }
+
+    .places {
+        margin-top: 40px;
+    }
+
+}
+
+@media screen and (max-width: 375px){
+    .head3, .head4{
+        margin: 10px 2px 0px 12px;
+    }
+    
+    .popover li {
+        padding-left: 5px;
+    }
+}
+
+@media screen and (max-width: 452px){
+    .head3, .head4{
+        margin: 10px 2px 0px 12px;
+    }
+    
+    .popover li {
+        padding-left: 5px;
     }
 }
